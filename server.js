@@ -9,9 +9,8 @@ const HOST = "0.0.0.0"
 const app = express()
 app.get("/", (req, res) => {
     if (process.env.VCAP_SERVICES) {
-        const appEnv = cfenv.getAppEnv(appEnvOpts)
-        let ce_services = process.env.CE_SERVICES
-        res.send("Estos son los servicios vinculados: " + ce_services + "\n esto es otra cosa:" + appEnv)
+        let vcap_services = process.env.VCAP_SERVICES
+        res.send("Estos son los servicios vinculados: " + vcap_services)
     } else {
         const msg = "No existe VCAP_SERVICES"
         res.send(msg)
